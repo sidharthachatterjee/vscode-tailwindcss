@@ -9,9 +9,8 @@ const {
 } = require('vscode')
 const _ = require('lodash')
 const fs = require('fs')
-const util = require('util')
+const { promisify } = require('util')
 const path = require('path')
-const { promisify } = require('bluebird')
 
 const readFileAsync = promisify(fs.readFile)
 
@@ -30,8 +29,6 @@ function requireFromString(string, filename) {
 }
 
 async function generateDynamicClasses(config) {
-  console.log(config)
-
   const backgroundColors = _.map(
     config.backgroundColors,
     (colorHash, colorName) => `bg-${colorName}`
@@ -49,7 +46,7 @@ async function generateDynamicClasses(config) {
 
   const fontColors = _.map(
     config.textColors,
-    (colorHash, colorName) => `font-${colorName}`
+    (colorHash, colorName) => `text-${colorName}`
   )
 
   const fontFamilies = _.map(
@@ -129,7 +126,7 @@ async function generateDynamicClasses(config) {
 
   const fontWeights = _.map(
     config.fontWeights,
-    (value, modifier) => `text-${modifier}`
+    (value, modifier) => `font-${modifier}`
   )
 
   const defaultBorderRadius = [
@@ -233,11 +230,26 @@ async function generateClasses() {
   const staticClasses = tailwindStaticClasses
 
   // Find configuration file in the workspace
-  const results = await workspace.findFiles('tailwind.js', '**/node_modules/**')
-  const config = await readFileAsync(results[0].fsPath, 'utf8')
+
+  let configurationFileResults, configurationFilePath, config
+
+  try {
+    configurationFileResults = await workspace.findFiles(
+      'tailwind.js',
+      '**/node_modules/**'
+    )
+    configurationFilePath = configurationFileResults[0].fsPath
+    config = await readFileAsync(configurationFilePath, 'utf8')
+  } catch (error) {
+    // There's no config file present, assuming this project doesn't use tailwind and bailing
+    console.log(
+      "There's no config file present, assuming this project doesn't use tailwind and bailing"
+    )
+    return []
+  }
 
   const dynamicClasses = await generateDynamicClasses(
-    requireFromString(config, results[0].fsPath)
+    requireFromString(config, configurationFilePath)
   )
 
   // Combine all classes together and return
@@ -307,8 +319,7 @@ async function activate(context) {
           .match(/class=["|']([\w- ]*$)/)[1]
           .split(' ')
 
-        return _
-          .chain(classes)
+        return _.chain(classes)
           .difference(classesInCurrentLine)
           .map(classItem => {
             return new CompletionItem(classItem, CompletionItemKind.Variable)

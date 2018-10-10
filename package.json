@@ -1,6 +1,6 @@
 {
   "name": "vscode-tailwindcss",
-  "displayName": "Tailwind CSS IntelliSense",
+  "displayName": "Tailwind CSS Autocomplete for Visual Studio Code",
   "description": "",
   "version": "0.0.1",
   "publisher": "sidharthachatterjee",
