@@ -258,7 +258,7 @@ async function generateClasses() {
 
 let classes
 
-const triggerCharacters = [' ']
+const triggerCharacters = ['"', "'", ' ', '.']
 
 async function activate(context) {
   // Use tailwindcss config to generate classes
@@ -269,9 +269,9 @@ async function activate(context) {
     classes = await generateClasses()
   })
 
-  commands.registerCommand('extension.sayHello', () => {
-    console.log(classes)
-  })
+  // commands.registerCommand('extension.sayHello', () => {
+  //   console.log(classes)
+  // })
   // fileSystemWatcher.onDidCreate(generateClasses)
   // fileSystemWatcher.onDidDelete(generateClasses)
 
@@ -304,7 +304,7 @@ async function activate(context) {
   //   )
   // )
 
-  const disposable = languages.registerCompletionItemProvider(
+  const disposableForHtml = languages.registerCompletionItemProvider(
     'html',
     {
       provideCompletionItems: (document, position, token, context) => {
@@ -330,7 +330,35 @@ async function activate(context) {
     ...triggerCharacters
   )
 
-  context.subscriptions.push(fileSystemWatcher, disposable)
+  context.subscriptions.push(fileSystemWatcher, disposableForHtml)
+
+  const disposableForJs = languages.registerCompletionItemProvider(
+    'javascript',
+    {
+      provideCompletionItems: (document, position, token, context) => {
+        // Get range including all characters in the current line
+        //  till the current position
+        const range = new Range(new Position(position.line, 0), position)
+
+        // Get text in current line
+        const textInCurrentLine = document.getText(range)
+
+        const classesInCurrentLine = textInCurrentLine
+          .match(/className=["|']([\w- ]*$)/)[1]
+          .split(' ')
+
+        return _.chain(classes)
+          .difference(classesInCurrentLine)
+          .map(classItem => {
+            return new CompletionItem(classItem, CompletionItemKind.Variable)
+          })
+          .value()
+      }
+    },
+    ...triggerCharacters
+  )
+
+  context.subscriptions.push(fileSystemWatcher, disposableForJs)
 }
 
 function deactivate() {}
