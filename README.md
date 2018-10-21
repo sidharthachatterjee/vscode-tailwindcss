@@ -2,7 +2,8 @@
 
 # Tailwind CSS Autocomplete for Visual Studio Code
 
-<!-- Add badges here -->
+[![The MIT License](https://flat.badgen.net/badge/license/MIT/orange)](http://opensource.org/licenses/MIT)
+[![Visual Studio Marketplace](https://vsmarketplacebadge.apphb.com/installs-short/sidharthachatterjee.vscode-tailwindcss.svg?style=flat-square)](https://marketplace.visualstudio.com/items?itemName=sidharthachatterjee.vscode-tailwindcss)
 
 Currently supports [Tailwind CSS](https://github.com/tailwindcss/tailwindcss) v0.6.5
 
@@ -13,20 +14,18 @@ Currently supports [Tailwind CSS](https://github.com/tailwindcss/tailwindcss) v0
 - Supports **autocomplete** for _all_ Tailwind classes
 - Reads your project's `tailwind.js` config and **reacts to changes in realtime**
   - Example: Add a new color called lilac to config for text colors and `text-lilac` will appear in autocomplete **instantly**
-- Works with several languages modes including HTML, JavaScript, JavaScript React, TypeScript React and Markdown
-  <!-- Add other language templates that are supported -->
+- Works with several languages modes including HTML, JavaScript, JavaScript React, TypeScript React, PHP and Vue
+- Supports @apply in CSS and SCSS files
 - Supports Emmet shortcuts
 - No need for generated CSS on disk for autocomplete to work (Works with **webpack dev server** too)
 
 ## Installation
 
-Install this extension from VS Code extensions. Search for `Tailwind CSS Intellisense`
-
-<!-- Add link to Visual Studio Code extensions marketplace -->
+Install this extension from the VS Code extensions marketplace. Search for `Tailwind CSS Autocomplete` or go [here](https://marketplace.visualstudio.com/items?itemName=sidharthachatterjee.vscode-tailwindcss)
 
 You can also install this via Quick Open (⌘P)
 
-`ext install`
+`ext install sidharthachatterjee.vscode-tailwindcss`
 
 ## Configuration
 
@@ -42,7 +41,7 @@ This extension reads config from the currently open project's `tailwind.js` file
 ## Thanks
 
 - Special thanks to [Adam Wathan](https://github.com/adamwathan) for Tailwind CSS ❤️
-- Thanks to [zignd](https://github.com/zignd) for [HTML-CSS-Class-Completion](https://github.com/zignd/HTML-CSS-Class-Completion). Regexes and and some logic was borrowed from there
+- Thanks to [zignd](https://github.com/zignd) for [HTML-CSS-Class-Completion](https://github.com/zignd/HTML-CSS-Class-Completion). Regexes and some logic was borrowed from there
 
 ## Contributions
 
