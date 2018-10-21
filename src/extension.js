@@ -1,6 +1,5 @@
 const {
   workspace,
-  commands,
   languages,
   CompletionItem,
   CompletionItemKind,
@@ -265,15 +264,18 @@ async function activate(context) {
   classes = await generateClasses()
 
   const fileSystemWatcher = workspace.createFileSystemWatcher('**/tailwind.js')
+
   fileSystemWatcher.onDidChange(async () => {
     classes = await generateClasses()
   })
 
-  // commands.registerCommand('extension.sayHello', () => {
-  //   console.log(classes)
-  // })
-  // fileSystemWatcher.onDidCreate(generateClasses)
-  // fileSystemWatcher.onDidDelete(generateClasses)
+  fileSystemWatcher.onDidCreate(async () => {
+    classes = await generateClasses()
+  })
+
+  fileSystemWatcher.onDidDelete(() => {
+    classes = []
+  })
 
   // const filetypes = [
   //   {
