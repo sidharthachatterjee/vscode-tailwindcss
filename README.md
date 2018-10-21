@@ -15,7 +15,7 @@ Currently supports [Tailwind CSS](https://github.com/tailwindcss/tailwindcss) v0
 - Reads your project's `tailwind.js` config and **reacts to changes in realtime**
   - Example: Add a new color called lilac to config for text colors and `text-lilac` will appear in autocomplete **instantly**
 - Works with several languages modes including HTML, JavaScript, JavaScript React, TypeScript React, PHP and Vue
-- Supports @apply in CSS and SCSS files
+- Supports `@apply` in CSS and SCSS files
 - Supports Emmet shortcuts
 - No need for generated CSS on disk for autocomplete to work (Works with **webpack dev server** too)
 
