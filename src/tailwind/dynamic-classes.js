@@ -196,6 +196,4 @@ async function generateDynamicClasses(config) {
   )
 }
 
-module.exports = {
-  generateDynamicClasses
-}
+module.exports = generateDynamicClasses
