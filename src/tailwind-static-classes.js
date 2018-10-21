@@ -20,6 +20,7 @@ module.exports = [
   'border-dashed',
   'border-dotted',
   'border-none',
+  'container',
   'cursor-auto',
   'cursor-default',
   'cursor-pointer',
