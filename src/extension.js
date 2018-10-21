@@ -365,13 +365,3 @@ function deactivate() {}
 
 exports.activate = activate
 exports.deactivate = deactivate
-
-// TODO: Add completion support for multiple file types
-// TODO: Use default configuration if none is found in workspace
-// TODO: Create new completion items on invalidation
-// TODO: Add support for Tailwind prefixes
-// TODO: Enable support for Emmet
-// TODO: Add error handling
-// TODO: Figure out a way to use Tailwind in node_modules to generate classes
-// TODO: Add support to use current project's Tailwind
-// TODO: Add support for prefixes

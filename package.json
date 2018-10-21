@@ -31,18 +31,13 @@
     "test": "node ./node_modules/vscode/bin/test"
   },
   "devDependencies": {
-    "typescript": "^2.6.1",
-    "vscode": "^1.1.6",
-    "eslint": "^4.11.0",
-    "@types/node": "^7.0.43",
-    "@types/mocha": "^2.2.42"
+    "vscode": "^1.1.6"
   },
   "prettier": {
     "semi": false,
     "singleQuote": true
   },
   "dependencies": {
-    "bluebird": "^3.5.1",
-    "lodash": "^4.17.10"
+    "lodash": "^4.17.11"
   }
 }
