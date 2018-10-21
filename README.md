@@ -42,7 +42,7 @@ This extension reads config from the currently open project's `tailwind.js` file
 ## Thanks
 
 - Special thanks to [Adam Wathan](https://github.com/adamwathan) for Tailwind CSS ❤️
-- Thanks to [zignd](https://github.com/zignd) for [HTML-CSS-Class-Completion](https://github.com/zignd/HTML-CSS-Class-Completion). Several regexes were borrowed from there
+- Thanks to [zignd](https://github.com/zignd) for [HTML-CSS-Class-Completion](https://github.com/zignd/HTML-CSS-Class-Completion). Regexes and and some logic was borrowed from there
 
 ## Contributions
 
